@@ -9,7 +9,7 @@ class LeagueTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    fixtureController.calculateLeagueTable();
+    // fixtureController.calculateLeagueTable();
 
     return Scaffold(
       appBar: AppBar(
