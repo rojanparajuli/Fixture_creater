@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:fixtureapp/controller/fixture_controller.dart';
-import 'package:fixtureapp/view/league_table.dart';
+import 'package:fixtureapp/controller/football_fixture_controller.dart';
+import 'package:fixtureapp/view/football/league_table.dart';
 
-class FixtureScreen extends StatelessWidget {
+class FootballFixtureScreen extends StatelessWidget {
   final FixtureController controller = Get.put(FixtureController());
 
-  FixtureScreen({Key? key}) : super(key: key);
+  FootballFixtureScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class FixtureScreen extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               // color: Colors.yellow,
@@ -37,7 +37,7 @@ class FixtureScreen extends StatelessWidget {
                         child: TextField(
                           controller: controller.teamController,
                           decoration: const InputDecoration(
-                            labelText: 'Enter Team Name',
+                            labelText: 'Enter Team Name', hintStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                           ),
                         ),
                       ),
@@ -51,7 +51,7 @@ class FixtureScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,
                         ),
-                        child: const Text('Add Team'),
+                        child: const Text('Add Team', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -60,7 +60,7 @@ class FixtureScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
                         ),
-                        child: const Text('Clear'),
+                        child: const Text('Clear', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                       ),
                     ],
                   ),
@@ -70,7 +70,7 @@ class FixtureScreen extends StatelessWidget {
                   child: Obx(() => ListView.builder(
                     itemCount: controller.teams.length,
                     itemBuilder: (context, index) {
-                      print(controller.teams.length);
+                      // print(controller.teams.length);
                       return Card(
                         color: Colors.white,
                         child: ListTile(
@@ -116,7 +116,7 @@ class FixtureScreen extends StatelessWidget {
                                         decoration: InputDecoration(
                         
                                           contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: Colors.grey))
+                                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: Colors.grey))
                                         ),
                                       ),
                                       );
@@ -152,7 +152,7 @@ class FixtureScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                   ),
-                  child: const Text('Generate Fixtures'),
+                  child: const Text('Generate Fixtures', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                 )),
                 const SizedBox(height: 20),
                 const Text(
@@ -161,58 +161,60 @@ class FixtureScreen extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Obx(() => ListView.builder(
-                    itemCount: controller.fixtures.length,
-                    itemBuilder: (context, index) {
-                      return FadeTransition(
-                        opacity: controller.animation,
-                        child: ListTile(
-                          title: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                  child: TextField(
-                                    onChanged: (value) {
-                                      controller.scores[index * 2] = int.tryParse(value) ?? 0;
-                                    },
-                                    keyboardType: TextInputType.number,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Score',
-                                      hintText: 'Enter score',
+                  child: Obx(() => Card(
+                    child: ListView.builder(
+                      itemCount: controller.fixtures.length,
+                      itemBuilder: (context, index) {
+                        return FadeTransition(
+                          opacity: controller.animation,
+                          child: ListTile(
+                            title: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    child: TextField(
+                                      onChanged: (value) {
+                                        controller.scores[index * 2] = int.tryParse(value) ?? 0;
+                                      },
+                                      keyboardType: TextInputType.number,
+                                      decoration: const InputDecoration(
+                                        labelText: 'Score',
+                                        hintText: 'Enter score',
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Text(
-                                  controller.fixtures[index].vs ?? '',
-                                  style: const TextStyle(fontSize: 18),
-                                ),
-                                const SizedBox(width: 80),
-                                Expanded(
-                                  child: TextField(
-                                    onChanged: (value) {
-                                      controller.scores[index * 2 + 1] = int.tryParse(value) ?? 0;
-                                    },
-                                    keyboardType: TextInputType.number,
-                                    decoration: const InputDecoration(
-                                      labelText: 'Score',
-                                      hintText: 'Enter score',
+                                  Text(
+                                    controller.fixtures[index].vs ?? '',
+                                    style: const TextStyle(fontSize: 18),
+                                  ),
+                                  const SizedBox(width: 80),
+                                  Expanded(
+                                    child: TextField(
+                                      onChanged: (value) {
+                                        controller.scores[index * 2 + 1] = int.tryParse(value) ?? 0;
+                                      },
+                                      keyboardType: TextInputType.number,
+                                      decoration: const InputDecoration(
+                                        labelText: 'Score',
+                                        hintText: 'Enter score',
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
+                            tileColor: index % 2 == 0 ? Colors.grey[200] : null,
                           ),
-                          tileColor: index % 2 == 0 ? Colors.grey[200] : null,
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   )),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     controller.calculateLeagueTable();
-                    Get.to(LeagueTableScreen());
+                    Get.to(()=>LeagueTableScreen());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,

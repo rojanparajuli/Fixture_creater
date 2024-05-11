@@ -1,4 +1,5 @@
-import 'package:fixtureapp/view/fixture_screen.dart';
+import 'package:fixtureapp/Dashboard/dashboard.dart';
+import 'package:fixtureapp/view/football/fixture_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:   FixtureScreen(),
+      home:   const Dashboard(),
     );
   }
 }
