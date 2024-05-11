@@ -1,4 +1,4 @@
-import 'package:fixtureapp/model/team_model.dart';
+import 'package:fixtureapp/model/football_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -121,5 +121,13 @@ Future<void> editTeam(String text, int index)async{
   teams.replaceRange(index, index+1, [TeamModel(teamname: text)]);
       
 }
+
+int calculatePoints(int win, int draw, int loss) {
+  int points = (win * 3) + (draw * 1) + (loss * 0);
+  return points;
+}
+
+
+
 
 }
