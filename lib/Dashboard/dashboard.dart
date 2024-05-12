@@ -1,3 +1,4 @@
+import 'package:fixtureapp/view/cricket/fixtures_screen.dart';
 import 'package:fixtureapp/view/football/fixture_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,7 +48,9 @@ class Dashboard extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.blue),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(()=> CrickectScreen());
+                  },
                   child: const Text('Cricket',style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
                 ),
               ],
