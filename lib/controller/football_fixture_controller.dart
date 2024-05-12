@@ -43,23 +43,17 @@ class FixtureController extends GetxController with GetTickerProviderStateMixin 
     RxList<FixtureModel> generatedFixtures = <FixtureModel>[].obs;
     for (int i = 0; i < teams.length - 1; i++) {
       for (int j = i + 1; j < teams.length; j++) {
-        // generatedFixtures.add('${teams[i].teamname} vs ${teams[j].teamname}');
         generatedFixtures.add(FixtureModel(vs: '${teams[i].teamname} vs ${teams[j].teamname}'));
         scores.add(0);
       }
     }
     print(generatedFixtures);
     fixtures.value = generatedFixtures;
-    // fixtures.add(FixtureModel(vs: generatedFixtures.toString()));
     _controller.forward(from: 0);
     update();
   }
 
   void calculateLeagueTable() {
-   
-    // for (int i = 0; i < teams.length; i++) {
-    //   teamData[teams[i]] = {'goals': 0, 'points': 0, 'matchesPlayed': 0};
-    // }
 
     for (int i = 0; i < fixtures.length; i++) {
       for (int j = i; j < fixtures.length; j++){
@@ -70,39 +64,7 @@ class FixtureController extends GetxController with GetTickerProviderStateMixin 
       print(score1);
       print(score2);
       }
-      // String team1 = fixtures[i].split(' vs ')[0];
-      // String team2 = fixtures[i].split(' vs ')[1];
-      // int goal = teamData[team1]!['goals'] ?? 0;
-      // int matchedPlayed = teamData[team2]!['matchesPlayed'] ?? 0;
-
-      
-        // goal = (goal! + score1);
-        // teamData[team2]!['goals'] = (teamData[team2]!['goals']! +score2);
-      
-
-     
-      // goal ++;
-    
-
-
-      // matchedPlayed ++;
-
-        // if (score1 > score2) {
-        //   teamData[team1]!['points'] = (teamData[team1]!['points']! + 3);
-        // } else if (score1 < score2) {
-        //   teamData[team2]!['points'] = (teamData[team2]!['points']! + 3);
-        // } else {
-        //   teamData[team1]!['points'] = 1;
-        //   teamData[team2]!['points'] = 1;
-        // }
     }
-
-    // var sortedTeams = teamData.entries.toList();
-    // sortedTeams.sort((a, b) => b.value['points']!.compareTo(a.value['points']!));
-
-    // for (var entry in sortedTeams) {
-    //   print('${entry.key}: ${entry.value}');
-    // }
   }
 
   Animation<double> get animation => _animation;
