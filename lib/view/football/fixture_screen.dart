@@ -58,7 +58,7 @@ class FootballFixtureScreen extends StatelessWidget {
                           controller.clearlist();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor: Colors.blue[100],
                         ),
                         child: const Text('Clear', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                       ),
