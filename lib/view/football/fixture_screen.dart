@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:fixtureapp/controller/football_fixture_controller.dart';
 import 'package:fixtureapp/view/football/league_table.dart';
@@ -74,6 +75,7 @@ class FootballFixtureScreen extends StatelessWidget {
                       return Card(
                         color: Colors.white,
                         child: ListTile(
+                          leading: Image.asset('assets/team.png'),
                           title: Center(
                             child: Text(
                               controller.teams[index].teamname ?? '',
@@ -173,9 +175,10 @@ class FootballFixtureScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Expanded(
+                                    flex: 1,
                                     child: TextField(
                                       onChanged: (value) {
-                                        controller.scores[index * 2] = int.tryParse(value) ?? 0;
+                                        controller.scores[index] = int.tryParse(value) ?? 0;
                                       },
                                       keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
@@ -184,15 +187,19 @@ class FootballFixtureScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    controller.fixtures[index].vs ?? '',
-                                    style: const TextStyle(fontSize: 18),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      controller.fixtures[index].vs ?? '',
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
                                   ),
                                   const SizedBox(width: 80),
                                   Expanded(
+                                    flex: 1,
                                     child: TextField(
                                       onChanged: (value) {
-                                        controller.scores[index * 2 + 1] = int.tryParse(value) ?? 0;
+                                        controller.scores[index] = int.tryParse(value) ?? 0;
                                       },
                                       keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(

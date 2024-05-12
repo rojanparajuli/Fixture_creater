@@ -10,12 +10,7 @@ class CrickectScreen
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Cricket Fixture Maker',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           title: const Text('Cricket Fixture Maker'),
         ),
@@ -54,7 +49,6 @@ class CrickectScreen
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
