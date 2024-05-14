@@ -11,6 +11,8 @@ class FixtureController extends GetxController with GetTickerProviderStateMixin 
   late Animation<double> _animation;
 
   final TextEditingController editingController = TextEditingController();
+  String team1 ='';
+    String team2 ='';
 
 
   @override
@@ -88,7 +90,6 @@ int calculatePoints(int win, int draw, int loss) {
   int points = (win * 3) + (draw * 1) + (loss * 0);
   return points;
 }
-
 
 
 
