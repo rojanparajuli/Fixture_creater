@@ -5,12 +5,10 @@ import 'package:get/get.dart';
 class LeagueTableScreen extends StatelessWidget {
   final FixtureController fixtureController = Get.find();
 
-  LeagueTableScreen({super.key});
+  LeagueTableScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    fixtureController.calculateLeagueTable();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('League Table'),
@@ -23,7 +21,6 @@ class LeagueTableScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              // color: Colors.yellow,
               child: Image.asset("assets/green.jpg"),
             ),
             Padding(
@@ -33,24 +30,32 @@ class LeagueTableScreen extends StatelessWidget {
                   itemCount: fixtureController.teams.length,
                   itemBuilder: (context, index) {
                     final team = fixtureController.teams[index];
-                    // final teamData = fixtureController.getTeamData(team);
+                    final teamFixture = fixtureController.fixtures
+                        .where((fixture) =>
+                            fixture.vs!.contains(team.teamname ?? ''))
+                        .toList();
+                    int matchesPlayed = teamFixture.length;
+                    int goalsScored =
+                        teamFixture.fold(0, (sum, fixture) => sum + fixture.goals!);
+                    int points = teamFixture.fold(
+                        0, (sum, fixture) => sum + fixture.points!);
 
                     return Card(
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: ListTile(
                           leading: Image.asset('assets/team.png'),
-                          title: const Text(
-                            "Team",
-                            style: TextStyle(
+                          title: Text(
+                            team.teamname ?? '',
+                            style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          subtitle: const Column(
+                          subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Matches Played'),
-                              Text('Goals Scored'),
-                              Text('Points'),
+                              Text('Matches Played: $matchesPlayed'),
+                              Text('Goals Scored: $goalsScored'),
+                              Text('Points: $points'),
                             ],
                           ),
                         ),
