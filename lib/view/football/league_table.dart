@@ -35,8 +35,8 @@ class LeagueTableScreen extends StatelessWidget {
                             fixture.vs!.contains(team.teamname ?? ''))
                         .toList();
                     int matchesPlayed = teamFixture.length;
-                    int goalsScored =
-                        teamFixture.fold(0, (sum, fixture) => sum + fixture.goals!);
+                    // int goalsScored =
+                    //     teamFixture.fold(0, (sum, fixture) => sum + fixture!);
                     int points = teamFixture.fold(
                         0, (sum, fixture) => sum + fixture.points!);
 
@@ -54,7 +54,7 @@ class LeagueTableScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Matches Played: $matchesPlayed'),
-                              Text('Goals Scored: $goalsScored'),
+                              // Text('Goals Scored: $goalsScored'),
                               Text('Points: $points'),
                             ],
                           ),
