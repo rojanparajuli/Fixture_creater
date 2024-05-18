@@ -50,6 +50,7 @@ class FixtureController extends GetxController with GetTickerProviderStateMixin 
     }
     print(generatedFixtures);
     fixtures.value = generatedFixtures;
+    print('ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg ${fixtures}');
     _controller.forward(from: 0);
     update();
   }
@@ -67,10 +68,13 @@ class FixtureController extends GetxController with GetTickerProviderStateMixin 
         // Team 2 wins........................................................................
         fixtures[i].loss = (fixtures[i].loss ?? 0) + 1;
         fixtures[i + 1].win = (fixtures[i + 1].win ?? 0) + 1;
-      } else {
+      } else if (score1 == score2) {
         // Draw...............................................................................
         fixtures[i].draw = (fixtures[i].draw ?? 0) + 1;
         fixtures[i + 1].draw = (fixtures[i + 1].draw ?? 0) + 1;
+      }else{
+        
+
       }
     }
 
